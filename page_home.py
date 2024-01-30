@@ -1,4 +1,5 @@
 from settings import *
+from page_history import update_table
 
 def page_home(page: ft.Page):
 
@@ -117,6 +118,7 @@ def page_home(page: ft.Page):
                     "O" : inputs["Ω"].value
                 }
             )
+            update_table()
             page.update()
         else:
             # print("має бути лише 2 поля")
