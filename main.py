@@ -8,18 +8,19 @@ def main(page: ft.Page):
     page.title = "Amperage App"
 
     def start_app():
-        ...
-        # page.client_storage.set("ThemeMode", "LIGHT")
-        # page.theme_mode = (
-        #     ft.ThemeMode.LIGHT if page.client_storage.get("ThemeMode") == "LIGHT" else ft.ThemeMode.DARK
-        # )
-        # print(dir(page))
+        page.client_storage.set("ThemeMode", "LIGHT")
+        page.storage_data = Storage_data(page)
         
-
+    
     start_app()
 
+    if not hasattr(page, 'datatable'):    
+        page.datatable = Table(page)
+    else:
+        page.datatable.create_table()
+    
     t = ft.Tabs(
-        selected_index=1,
+        selected_index=0,
         animation_duration=100,
         divider_color=colors["primary"],
         indicator_color="green",
@@ -42,7 +43,6 @@ def main(page: ft.Page):
         ],
         scrollable=False,
         expand=1,
-        
     )
 
     page.padding = 0
@@ -54,7 +54,6 @@ def main(page: ft.Page):
             content=ft.SafeArea(
                 ft.Container(
                     t,
-                    
                 ),
                 expand=True
             ),

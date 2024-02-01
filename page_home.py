@@ -1,7 +1,9 @@
 from settings import *
-from page_history import update_table
+
 
 def page_home(page: ft.Page):
+
+
 
     style = ft.ButtonStyle(
         color={
@@ -14,10 +16,10 @@ def page_home(page: ft.Page):
 
     def clearInput(nameInput):
         print("clear")
-        print(page.window_width)
-        print(page.width)
-        print(page.window_min_width)
-        print(page.window_max_width)
+        # print(page.window_width)
+        # print(page.width)
+        # print(page.window_min_width)
+        # print(page.window_max_width)
         inputs[nameInput].value = ""
         page.update()
 
@@ -110,18 +112,17 @@ def page_home(page: ft.Page):
             elif W and O:
                 inputs["V"].value = math.sqrt(float(W) * float(O))
                 inputs["A"].value = math.sqrt(float(W) / float(O))
-            history_list.append(
+            page.storage_data.history_list.append(
                 {
-                    "A" : inputs["A"].value,
                     "V" : inputs["V"].value,
+                    "A" : inputs["A"].value,
                     "W" : inputs["W"].value,
-                    "O" : inputs["Ω"].value
+                    "O" : inputs["Ω"].value,
+                    "star":False
                 }
             )
-            update_table()
-            page.update()
+            page.datatable.update()
         else:
-            # print("має бути лише 2 поля")
             open_dlg()
 
     return ft.Container(
